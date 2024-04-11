@@ -21,8 +21,10 @@ Find the Content Useful? [You can always buy me a coffee](https://www.buymeacoff
     - css
     - favicon
     - id="root" - our entire app
+      
 - src
   In simplest form it's the brain of our app. This is where we will do all of our work. src/index.js is the JavaScript entry point.
+  
 - .gitignore
   Specifies which files source control (Git) should ignore
 
@@ -39,17 +41,17 @@ Find the Content Useful? [You can always buy me a coffee](https://www.buymeacoff
 
 #### Remove Boilerplate
 
-- remove src folder
+- remove src folder under React directory
 - create src folder
 
   - create index.js inside src
 
-- toggle sidebar CMD + B
-- shortcuts settings/keyboard shortcuts
+- toggle sidebar CMD + B [ it is a shortcut to toggle the sidebar where file explorer, debugger menu won't be visible]
+- shortcuts settings/keyboard shortcuts 
 
 #### First Component
 
-```js
+```js this will be the first component of react
 function Greeting() {
   return <h2>My First Component</h2>;
 }
