@@ -112,6 +112,7 @@ Just restart the server
 
 - Auto Rename Tag, Paste this in setting.json for highlighting the opening and closing tag
   
+    ```json
     "highlight-matching-tag.styles": {
     "opening": {
       "left": {
@@ -132,6 +133,7 @@ Just restart the server
       }
     }
   }
+  ```
   
 - Highlight Matching Tag
   - customize in settings.json
@@ -205,7 +207,7 @@ const Greeting = () => {
 
 #### JSX Rules
 
-- return single element (one parent element)
+- return single element (one parent element); we cannot return more than one element for example: there is a <div> element and allowed by another <h2>, In this case we will end up with errors. Or there is work around where you can wrap a parent div with all your element inside of that div.
 
   - semantics section/article
   - Fragment - let's us group elements without adding extra nodes
