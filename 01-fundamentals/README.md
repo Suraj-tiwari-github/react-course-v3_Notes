@@ -63,9 +63,9 @@ const Greeting = () => {
 };
 ```
 
-- starts with capital letter
-- must return JSX (html)
-- always close tag <Greeting/>
+- React component is always a function and component starts with capital letter
+- Component must return JSX (html) element or a single jsx element
+- always close tag <Greeting/> while rendering the component or in other words when using it.
 
 ##### Typical Component
 
@@ -110,9 +110,32 @@ Just restart the server
 
 #### Extensions and settings.json
 
-- Auto Rename Tag
+- Auto Rename Tag, Paste this in setting.json for highlighting the opening and closing tag
+  
+    "highlight-matching-tag.styles": {
+    "opening": {
+      "left": {
+        "custom": {
+          "borderWidth": "0 0 0 3px",
+          "borderStyle": "solid",
+          "borderColor": "yellow",
+          "borderRadius": "5px"
+        }
+      },
+      "right": {
+        "custom": {
+          "borderWidth": "0 3px 0 0",
+          "borderStyle": "solid",
+          "borderColor": "yellow",
+          "borderRadius": "5px"
+        }
+      }
+    }
+  }
+  
 - Highlight Matching Tag
   - customize in settings.json
+    
 - Prettier
   - format on save
   - format on paste
@@ -120,7 +143,7 @@ Just restart the server
 
 settings.json
 
-```json
+```json for prettier to work
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
