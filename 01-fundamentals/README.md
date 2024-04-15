@@ -405,7 +405,7 @@ body {
 }
 ```
 
-- import file and add classes
+- import css file and remember to always add extension of the file in this case index.css and add classes
 
 ```js
 import './index.css';
