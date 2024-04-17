@@ -767,7 +767,7 @@ console.log(job);
 
 ```js
 const Book = (props) => {
-  const { img, title, author } = props;
+  const { img, title, author } = props; //destructuring in js
   return (
     <article className='book'>
       <img src={img} alt={title} />
@@ -782,7 +782,7 @@ const Book = (props) => {
 - if you have console.log(props) - it won't be defined
 
 ```js
-const Book = ({ img, title, author }) => {
+const Book = ({ img, title, author }) =>  // this is destructure in function param
   return (
     <article className='book'>
       <img src={img} alt={title} />
@@ -797,7 +797,7 @@ const Book = ({ img, title, author }) => {
 
 - everything we render between component tags
 - during the course we will mostly use it Context API
-- special prop, has to be "children"
+- special prop, has to be "children" not Childrens, Children, Only "children"
 - can place anywhere in JSX
 
 ```js
@@ -809,6 +809,7 @@ function BookList() {
         title={firstBook.title}
         img={firstBook.img}
       >
+// here the book opening tag is has been, we are in between of <book> We are here</book>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque
           repudiandae inventore eos qui animi sed iusto alias eius ea sapiente.
@@ -835,7 +836,7 @@ const Book = (props) => {
       <img src={img} alt={title} />
       <h2>{title}</h2>
       <h4>{author} </h4>
-      {children}
+      {children} // rendering of children props after destructuring in props
     </article>
   );
 };
@@ -847,7 +848,10 @@ const Book = (props) => {
 @media screen and (min-width: 768px) {
   .booklist {
     grid-template-columns: repeat(3, 1fr);
-    align-items: start;
+    align-items: start; // To fix the length of the cards as per the content is there,
+// like if a card is longer and another card is shorter, Both will be display as long,
+// to display them as one is having the more content, however 2nd card is not having
+// that much content to show, then we need to use this property.
   }
 }
 .book p {
@@ -956,6 +960,9 @@ function BookList() {
 
 #### Key Prop
 
+- There will be a warming in the console that Each child in a list should have a unique "key" prop.
+- In order to avoid that warming we need to have a unique counter or id so that react can keep
+- a count on the number of component we are returning.
 - typically it's going to be id
 
 ```js
@@ -980,6 +987,8 @@ function BookList() {
       {books.map((book) => {
         console.log(book);
         const { img, title, author, id } = book;
+// in the above line we are defining the id, section typically we have to define that
+//where the loops is recurring to avoid the warming.
         return <Book book={book} key={id} />;
       })}
     </section>
@@ -987,7 +996,8 @@ function BookList() {
 }
 ```
 
-- you will see index,but it's not advised if the list is changing
+- you will see index, but it's not advised if the list is changing
+- As the below approach is not recommanded when we know that the list will change in the future
 
 ```js
 function BookList() {
