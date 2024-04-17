@@ -627,7 +627,7 @@ someFunc('job', 'developer');
 ```
 
 ```js
-const Book = (props) => {
+const Book = (props) => {// Here we have define props
   console.log(props);
   return (
     <article className='book'>
@@ -649,13 +649,13 @@ const Book = (props) => {
 function BookList() {
   return (
     <section className='booklist'>
-      <Book job='developer' />
-      <Book title='random title' number={22} />
+      <Book job='developer' /> //props will be used upon component rendering
+      <Book title='random title' number={22} /> // string will have quotes, number/variable/object will have curly braces {}
     </section>
   );
 }
 const Book = (props) => {
-  console.log(props);
+  console.log(props); // here props is an object, we can access the values by using object.propety so the example would be props.job, props.title, props.number
   return (
     <article className='book'>
       <img src={img} alt={title} />
