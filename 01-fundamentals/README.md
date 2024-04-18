@@ -1023,6 +1023,18 @@ function BookList() {
 }
 ```
 
+- Here we are doing the same work twice like
+  ```
+  under BookList() component
+  const {img, title, author}= book
+
+  under Book component
+  const {img, title, author} = book
+
+```
+
+- In the next Step we are planning to pass the entire object to avoid the same work twice 
+
 #### Pass The Entire Object
 
 - render component
@@ -1035,16 +1047,16 @@ function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
-        console.log(book);
+        console.log(book); // book is an object have 3 property of book
         const { img, title, author } = book;
-        return <Book book={book} />;
+        return <Book book={book} />; // props itself is an object, we are storing book object inside the props object
       })}
     </section>
   );
 }
 
 const Book = (props) => {
-  const { img, title, author } = props.book;
+  const { img, title, author } = props.book; // accessing the object via props.book
 
   return (
     <article className='book'>
@@ -1056,9 +1068,9 @@ const Book = (props) => {
 };
 ```
 
-- alternative
-
+- alternative, 
 ```js
+// directly destructing and saving inside the object book
 const Book = ({ book: { img, title, author } }) => {
   return (
     <article className='book'>
@@ -1096,6 +1108,7 @@ function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
+//by using the spread operator for spreading out the properties of object. (...book)
         return <Book {...book} key={book.id} />;
       })}
     </section>
@@ -1103,7 +1116,7 @@ function BookList() {
 }
 
 const Book = (props) => {
-  const { img, title, author } = props;
+  const { img, title, author } = props; // destructuring the properties from props object
   return (
     <article className='book'>
       <img src={img} alt={title} />
