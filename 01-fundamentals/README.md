@@ -1312,7 +1312,11 @@ const Book = (props) => {
     <article className='book'>
       <img src={img} alt={title} />
       <h2>{title}</h2>
-      <button onClick={displayTitle}>display title</button>
+      <button onClick={displayTitle}>display title</button> // in this line we are
+// able to display the title from each card so easily, If suppose; We are trying to
+// achieve this same functionality in vanilla JS, then we would have to use the
+// onClick event on the query selector, Scan the list of selector and match the value,
+// then display the title. but here in react.js we are able to do so easy pizy
       <h4>{author} </h4>
     </article>
   );
@@ -1323,7 +1327,7 @@ const Book = (props) => {
 
 #### Prop Drilling
 
-- react data flow - can only pass props down
+- react data flow - can only pass props down (parent component can send component to the child component) 
 - alternatives Context API, redux, other state libraries
 
 ```js
@@ -1335,25 +1339,30 @@ function BookList() {
   return (
     <section className='booklist'>
       {books.map((book) => {
-        return <Book {...book} key={book.id} displayValue={displayValue} />;
+        return <Book {...book} key={book.id} displayValue={displayValue} />; // passing our displayValue function in props that is in BookList not in Book.
+// Earlier every component is coming from Book now we are sending a Component down
+// from BookList to Book Component.
       })}
     </section>
   );
 }
 
 const Book = (props) => {
-  const { img, title, author, displayValue } = props;
+  const { img, title, author, displayValue } = props; // destructring displayValue in props
 
   return (
     <article className='book'>
       <img src={img} alt={title} />
       <h2>{title}</h2>
-      <button onClick={displayValue}>click me</button>
+      <button onClick={displayValue}>click me</button> // access here displayValue
       <h4>{author} </h4>
     </article>
   );
 };
 ```
+
+-In react , as far as data flow we can pass data from parent to child component
+- This is what called as Prop Drilling.
 
 #### More Complex Example
 
