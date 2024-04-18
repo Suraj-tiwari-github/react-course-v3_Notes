@@ -1090,7 +1090,7 @@ const Book = ({ book: { img, title, author } }) => {
 
 ```js
 const friends = ['john', 'peter', 'anna'];
-const newFriends = [...friends, 'susan'];
+const newFriends = [...friends, 'susan']; //spread opeartor ...
 console.log(friends);
 console.log(newFriends);
 const someObject = {
