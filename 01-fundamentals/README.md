@@ -896,7 +896,9 @@ const Book = (props) => {
 };
 ```
 
-- can't render objects in React
+- can't render objects in React, We will get an error in the console, The error message is : Objects are
+- Object are not valid as a React child.
+- Reason for error: we have render {books} [Books is a object]. We can't render the object directly.
 
 ```js
 function BookList() {
@@ -904,13 +906,15 @@ function BookList() {
 }
 ```
 
+-What is the solution to render the object in jsx, We need to use map to see if we have an object in our data
+- we can render array in jsx, below we will see that
 - map - creates a new array from calling a function for every array element.
 
 ```js
 const names = ['john', 'peter', 'susan'];
 const newNames = names.map((name) => {
   console.log(name);
-  return <h1>{name}</h1>;
+  return <h1>{name}</h1>; // name is an array so it will render nice.
 });
 
 function BookList() {
