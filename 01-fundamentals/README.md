@@ -518,7 +518,7 @@ const Author = () => (
   so if you want to make some changes,
   reference the library docs and elements tab
 
-- alternative option
+- alternative option, create a object with Author that is key-value pair and use in jsx as {} to apply the styles
 
 ```js
 const Author = () => {
@@ -564,7 +564,7 @@ const Book = () => {
 ```
 
 - {} in JSX means going back to JS Land
-- value inside must be an expression (return value),
+- value inside {} curly braces must be an expression (that it should return value),
   can't be a statement
 
 ```js
@@ -580,8 +580,8 @@ const Book = () => {
       <h2>{title}</h2>
 
       <h4>{author.toUpperCase()} </h4>
-      {/* <p>{let x = 6}</p> */}
-      <p>{6 + 6}</p>
+      {/* <p>{let x = 6}</p> */} // this is a statement, result=error
+      <p>{6 + 6}</p> // return value is 12, this is expresssion
     </article>
   );
 };
