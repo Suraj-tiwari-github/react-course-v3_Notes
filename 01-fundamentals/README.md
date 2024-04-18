@@ -1381,7 +1381,9 @@ const BookList = () => {
     const book = books.find((book) => book.id === id);
     console.log(book);
   };
-
+//if we try to invoke the function after defining it, it will run fine
+// like getBook(2); // this will run everytime
+// but onClick=getBook(2) It won't run. because it is not invoking on it owns
   return (
     <section className='booklist'>
       {books.map((book) => {
@@ -1400,6 +1402,8 @@ const Book = (props) => {
       <img src={img} alt={title} />
       <h2>{title}</h2>
       {/* this is not going to work */}
+//getBook(id) will run on a first application load instance, Becoz it is in parenthesis
+//we don't have a reference of it to invoke, or it is not a reference anymore
       <button onClick={getBook(id)}>display title</button>
       <h4>{author}</h4>
     </article>
@@ -1415,6 +1419,9 @@ const Book = (props) => {
   const { img, title, author, getBook, id } = props;
   // console.log(props);
   const getSingleBook = () => {
+// here we are passing the reference of the getBook(id) under the function
+// getSingleBook, getSingleBook will return the reference of getBook(id)
+// then it can easily run, this process is called setup wrapper.
     getBook(id);
   };
   return (
@@ -1530,6 +1537,9 @@ index.js
 
 ```js
 import { books } from './books';
+<!--- We have used {} curly braces that we'll be getting a speicfic item, that means!>
+<!-- We have exporting with the name export so that we have to match the name !>
+
 ```
 
 - default export
