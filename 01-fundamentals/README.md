@@ -909,6 +909,9 @@ function BookList() {
 -What is the solution to render the object in jsx, We need to use map to see if we have an object in our data
 - we can render array in jsx, below we will see that
 - map - creates a new array from calling a function for every array element.
+- We can Destructure the object and use them
+- or we can also use the object with its property name, like in this case we have
+- book object right, so {book.title} will work however {book} will not work
 
 ```js
 const names = ['john', 'peter', 'susan'];
@@ -954,8 +957,9 @@ function BookList() {
     <section className='booklist'>
       {books.map((book) => {
         console.log(book);
-        const { img, title, author } = book;
+        const { img, title, author } = book; // destructure from the book
         return <Book img={img} title={title} author={author} />;
+// passing directly to the component as props like Book <book img={img} 
       })}
     </section>
   );
@@ -967,7 +971,9 @@ function BookList() {
 - There will be a warming in the console that Each child in a list should have a unique "key" prop.
 - In order to avoid that warming we need to have a unique counter or id so that react can keep
 - a count on the number of component we are returning.
-- typically it's going to be id
+- typically In this case we are going with id however it doesn't have to be id
+- all the time, we can use different properties, the only thing that which is matter is that
+- it has to be unique value, either number of string of 'one' or string 'two'
 
 ```js
 const books = [
@@ -975,13 +981,13 @@ const books = [
     author: 'Jordan Moore',
     title: 'Interesting Facts For Curious Minds',
     img: './images/book-1.jpg',
-    id: 1,
+    id: 1, // this is unique to avoid the warning.
   },
   {
     author: 'James Clear',
     title: 'Atomic Habits',
     img: 'https://images-na.ssl-images-amazon.com/images/I/81wgcld4wxL._AC_UL900_SR900,600_.jpg',
-    id: 2,
+    id: 2, //same
   },
 ];
 
@@ -990,7 +996,7 @@ function BookList() {
     <section className='booklist'>
       {books.map((book) => {
         console.log(book);
-        const { img, title, author, id } = book;
+        const { img, title, author, id } = book; // destructuring id
 // in the above line we are defining the id, section typically we have to define that
 //where the loops is recurring to avoid the warming.
         return <Book book={book} key={id} />;
