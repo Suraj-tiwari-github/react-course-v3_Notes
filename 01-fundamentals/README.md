@@ -1565,6 +1565,10 @@ index.js
 
 ```js
 import Book from './Book';
+or
+import YOUR_OWN_NAME_TO USE from './Book'
+
+//example of export default Book
 ```
 
 #### Local Images (src folder)
