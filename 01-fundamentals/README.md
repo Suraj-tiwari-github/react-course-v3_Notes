@@ -46,7 +46,7 @@ Find the Content Useful? [You can always buy me a coffee](https://www.buymeacoff
 
   - create index.js inside src
 
-- toggle sidebar CMD + B [ it is a shortcut to toggle the sidebar where file explorer, debugger menu won't be visible]
+- toggle sidebar CMD + B [ it is a shortcut in vs code to toggle the sidebar where file explorer, debugger menu won't be visible]
 - shortcuts settings/keyboard shortcuts 
 
 #### First Component
