@@ -128,7 +128,7 @@ export default App
   - Services.js
   - Tours.j
   - Footer.js
-- setup components with default export (snippet - rafce)
+- setup components with default export (snippet - rafce).
 - carefully move the code from App.js into components (files)
   - hint - look for navbar, footer and section tags
 - App.js should be empty
