@@ -121,7 +121,7 @@ export default App
 #### Setup Components
 
 - in src create components folder
-- in the components create following files
+- in the components create following files. with rafce
   - Navbar.js
   - Hero.js
   - About.js
