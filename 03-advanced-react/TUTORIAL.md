@@ -11,8 +11,8 @@
 - /tutorial directory
 - work in the starter folder
 - complete code in the final folder
-- in order to work on topic import component from 'starter'
-- in order to test final import component from 'final'
+- in order to work on topic import component from 'starter' directory, inside of tutorial directory of advanced react directory.
+- in order to test final, import component from 'final'. This is also under the tutorial directory.
 - setup challenges
 - in the beginning examples with numbers and buttons :):):)
 
