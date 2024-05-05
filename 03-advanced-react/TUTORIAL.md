@@ -484,7 +484,8 @@ const UseEffectBasics = () => {
 
   useEffect(() => {
     console.log('hello from useEffect');
-  }, []); //[] is a dependency array.
+  }, []); //[] is a dependency array. we have written here so it will render only once.
+// It will not render on state change.
   return (
     <div>
       <h1>value : {value}</h1>
@@ -512,11 +513,12 @@ const MultipleEffects = () => {
 
   useEffect(() => {
     console.log('hello from first useEffect');
-  }, [value]);
+  }, [value]); //* here we passing value, so it will run on state change. that means
+// we can able to see this console message in the console of the browser.
 
   useEffect(() => {
     console.log('hello from second useEffect');
-  }, [secondValue]);
+  }, [secondValue]); //* This will run on the secondValue state change.
   return (
     <div>
       <h1>value : {value}</h1>
