@@ -461,11 +461,11 @@ useEffect is a hook in React that allows you to perform side effects in function
 
 - useEffect hook
 - accepts two arguments (second optional)
-- first argument - cb function
+- first argument - callback function
 - second argument - dependency array
 - by default runs on each render (initial and re-render)
-- cb can't return promise (so can't make it async)
-- if dependency array empty [] runs only on initial render
+- callback(cb) can't return promise (so can't make it async)
+- if dependency array empty [] runs passed in the 2nd parameter of useEffect it will run only on initial render
 
 ```js
 import { useState, useEffect } from 'react';
@@ -484,7 +484,7 @@ const UseEffectBasics = () => {
 
   useEffect(() => {
     console.log('hello from useEffect');
-  }, []);
+  }, []); //[] is a dependency array.
   return (
     <div>
       <h1>value : {value}</h1>
