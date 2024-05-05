@@ -377,9 +377,15 @@ const handleClick = () => {
   // console.log('clicked the button');
   //   setValue(value + 1);
   // }, 3000);
+// the value will get update after the 3 sec mark. In those 3 sec; the value which is taken to be updated
+// is the previous state value not the current state value. that why even after clicking 10 times
+// in those 3 sec, the value is getting updated only once.
   setTimeout(() => {
     console.log('clicked the button');
     setValue((currentState) => {
+//* here we are defining a callback function on the setValue which is a useState update function
+// It will get updated with the current value and after completing 3 sec mark, the updated value
+// will be the same with the current value.
       return currentState + 1;
     });
   }, 3000);
