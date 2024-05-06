@@ -753,13 +753,16 @@ import { useEffect, useState } from 'react';
 
 const MultipleReturnsBasics = () => {
   // while fetching data
-  // convention with boolean values "isSomething"
+  // convention with boolean values "isSomething" to use is with the name of the value to
+// represent it as boolean
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
       // done fetching data
       setIsLoading(false);
+// after 3 sec we are changing the state and setting it as false.
+// the result would be "Loading".. for 3 sec and later the result changes to My App from last return statement.
     }, 3000);
   }, []);
 
