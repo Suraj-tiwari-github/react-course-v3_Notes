@@ -939,7 +939,7 @@ console.log(user); // still null
 const { avatar_url, name, company, bio } = user;
 ```
 
-- after returns
+- after returns statements
 
 ```js
 console.log(user); // user object;
@@ -973,7 +973,7 @@ someObject.propertyThatDoesNotExist; // returns undefined
 
 // not cool at all, javascript will scream, yell and complain
 const randomValue = null;
-randomValue.name;
+randomValue.name; // randomValue==undefined, undefined.name==error.
 
 // this is ok
 const randomList = [];
@@ -988,6 +988,8 @@ console.log(randomList[0].name);
 ```js
 const fetchData = async () => {
   // fetch data
+  //Entire logic is outside of useEffect and
+// we are calling this fun from inside of useEffect.
 };
 
 useEffect(() => {
@@ -997,6 +999,15 @@ useEffect(() => {
 
 - DON'T ADD fetchData to dependency array !!!
 - IT WILL TRIGGER INFINITE LOOP !!!
+- What is fetchData() is doing, it is updating the state value, so It will trigger a re-render.
+- When the re-render happens, the function fetchData will be created again from the strach and will need to allocate the heap memory for this function again becoz of re-render.
+- Let say we have added fetchData() again in the dependency array. Again the re-render happens, same process will be repeated and we will end up in lool
+
+  ```js
+useEffect(() => {
+  fetchData();
+}, [fetchData]);
+  ```
 
 #### DON'T CALL HOOKS CONDITIONALLY
 
