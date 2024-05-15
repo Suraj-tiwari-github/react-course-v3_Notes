@@ -1022,13 +1022,17 @@ const Example = () => {
   const [condition, setCondition] = useState(true);
   if (condition) {
     // won't work
+    // conditional hooks doesn't support.
     const [state, setState] = useState(false);
   }
 
   if (condition) {
     return <h2>Hello There</h2>;
+// this will also fail
   }
-  // this will also fail
+
+// the below useEffect will also fail, because we need to use, useEffect before
+// return statements.
   useEffect(() => {
     console.log('hello there');
   }, []);
