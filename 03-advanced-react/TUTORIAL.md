@@ -1022,7 +1022,7 @@ const Example = () => {
   const [condition, setCondition] = useState(true);
   if (condition) {
     // won't work
-    // conditional hooks doesn't support.
+    // conditional hooks doesn't support. Don't use condition on hooks
     const [state, setState] = useState(false);
   }
 
@@ -1164,10 +1164,10 @@ const ShortCircuitOverview = () => {
     <div>
       {/* {if(someCondition){"won't work"}} */}
 
-      <h4>Falsy OR : {text || 'hello world'}</h4>
-      <h4>Falsy AND {text && 'hello world'}</h4>
-      <h4>Truthy OR {name || 'hello world'}</h4>
-      <h4>Truthy AND {name && 'hello world'}</h4>
+      <h4>Falsy OR : {text || 'hello world'}</h4> // OR return 'hello world'
+      <h4>Falsy AND {text && 'hello world'}</h4> // return text, as text contaisn no data, it is AND Operator so return first operand, so falsy
+      <h4>Truthy OR {name || 'hello world'}</h4> // result: name value
+      <h4>Truthy AND {name && 'hello world'}</h4> //result: 'hello world'
       {codeExample}
     </div>
   );
@@ -1183,6 +1183,7 @@ import Starter from './tutorial/03-conditional-rendering/starter/05-short-circui
 
 Vanilla JS (Optional)
 The ! operator is a logical operator in JavaScript that negates a boolean value. It is equivalent to the not operator in other programming languages.
+It reverse the result, if suppose the value is true, By using Not Oeprator it will reverse True to False.
 
 For example:
 
