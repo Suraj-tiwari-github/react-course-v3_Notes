@@ -628,7 +628,14 @@ const CleanupFunction = () => {
       <button className='btn' onClick={() => setToggle(!toggle)}>
         toggle component
       </button>
-      {toggle && <RandomComponent />}
+      {toggle && <RandomComponent />} // this kind of conditional statement will result in
+// initial re-rendering on the component like RandomComponent will re-render on the state change
+// though we have use dependency array in useEffect to render it only once, but it will trigger a
+// re-rendering when used in this type of conditional rendering.
+
+// The reason behind we are able to see that it is working on every mounting of the component on the page
+// because mounting and de-mounting will result in initial render when used with conditional rendering
+// irrespective of using useEffect with dependency array. useEffect (()=> {}, [dependency Array])
     </div>
   );
 };
