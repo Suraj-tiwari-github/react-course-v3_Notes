@@ -1948,7 +1948,10 @@ const UncontrolledInputs = () => {
     // const name = formData.get('name');
     // console.log(name);
     // console.log([...formData.entries()]);
-    const newUser = Object.fromEntries(formData);
+    const newUser = Object.fromEntries(formData); //Object.fromEntries is used to convert the array
+// of form data into the object with key value pair, Console.log([...formData.entries()]) return list of array.
+// here we are converting list of array into a object by using Objecdt.fromEntries method.
+
     // do something (post request, add to list, etc)
     console.log(newUser);
     // Gotcha - re-render won't clear out the values
@@ -1999,7 +2002,7 @@ export default UncontrolledInputs;
 
 - e.currentTarget
 
-In React, e.currentTarget returns the DOM element that triggered the event.
+In React, e.currentTarget returns the DOM element that triggered the event. Here in this case it will return form data.
 
 - Object From Entries
 
