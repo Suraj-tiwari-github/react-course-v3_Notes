@@ -2046,25 +2046,34 @@ const UseRefBasics = () => {
   // set value ourselves or DOM node
 
   useEffect(() => {
-    // console.log(refContainer.current);
-    refContainer.current.focus();
+    // console.log(refContainer.current); // returned the input tag with values
+    refContainer.current.focus(); //* Here we are applying the focus on the input tag which is being tag with
+//* useRef in the input tag as ref={refContainer}
   });
 
-  const isMounted = useRef(false);
+  const isMounted = useRef(false); //* isMounted contains an object
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(refContainer.current);
-    const name = refContainer.current.value;
+    const name = refContainer.current.value; //* value is used because it is a input field, to access
+// the input filed value in js, we can access via value.
     console.log(name);
   };
 
+//* Below useEffect is an example of not letting to run some functionality on initial render but torender at
+//* every state change later on but not on initial render. 
+
   useEffect(() => {
     if (!isMounted.current) {
+//* Here is reason behind using (isMounted.current) because useRef return an object, under the object of useRef
+//* we have a property called current.
       isMounted.current = true;
       return;
     }
     console.log('re-render');
+//* This useEffect is a standard practice in the case where we don't want to the initial render but we want it to happen
+//* after every state change, As Every State change result in re-render.
   }, [value]);
 
   return (
