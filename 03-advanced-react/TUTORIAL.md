@@ -1795,6 +1795,10 @@ const MultipleInputs = () => {
 
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
+// [e.target.name] is the dynamic object key, where suppose we use name: e.target.value.
+// for that case, it will only update the value of name even when we type on email input field or password input field.
+// Only the name will get updated. So the solution to it is to use e.target.name so when ever the value is being inputted
+// in name, email and password, it will update their state accordingly. 
   };
 
   const handleSubmit = (e) => {
