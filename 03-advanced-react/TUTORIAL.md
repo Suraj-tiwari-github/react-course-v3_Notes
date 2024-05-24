@@ -2111,7 +2111,7 @@ export default UseRefBasics;
 import Starter from './tutorial/08-custom-hooks/starter/01-toggle.jsx';
 ```
 
-- same rules as regular hooks
+- same rules as regular hooks, that means it has to start with use(hook_name) for example useToggle
 - simplify component (less code)
 - re-use functionality
 
@@ -2120,12 +2120,13 @@ useToggle.js
 ```js
 import { useState } from 'react';
 
+//* here goes our first custom hook.
 const useToggle = (defaultValue) => {
   const [show, setShow] = useState(defaultValue);
   const toggle = () => {
     setShow(!show);
   };
-  return { show, toggle };
+  return { show, toggle }; //* two parameters of our hooks when used const [show,toggle]=useToggle();
 };
 
 export default useToggle;
@@ -2235,8 +2236,11 @@ Challenge
 
 - Navbar.jsx
 
-  - NavLinks.jsx (nested in Navbar)
-    - UserContainer.jsx (nested in NavLinks)
+  - NavLinks.jsx (nested in Navbar means render NavLinks component in Navbar Component)
+    - UserContainer.jsx (nested in NavLinks means render UserContainer in NavLinks component)
+   
+- Passing on the component with props which means parent element is passing the values to child element, Child element
+- is passing the element to grand child element or we can say saying of props is called props drilling.
 
 - import Navbar.jsx in App.jsx (remove container - CSS)
 - in Navbar.jsx setup
@@ -2265,7 +2269,8 @@ const Navbar = () => {
   return (
     <nav className='navbar'>
       <h5>CONTEXT API</h5>
-      <NavLinks user={user} logout={logout} />
+      <NavLinks user={user} logout={logout} /> // Rendering Navlinks component in Navbar and passing the state by using props
+// user and logout is being passed as props to Navlink
     </nav>
   );
 };
@@ -2288,7 +2293,8 @@ const NavLinks = ({ user, logout }) => {
           <a href='#'>about</a>
         </li>
       </ul>
-      <UserContainer user={user} logout={logout} />
+      <UserContainer user={user} logout={logout} /> // Rendering UserContainer in Navlink and passing on Props which we get from
+// Navbar and passing it to UserContainer.
     </div>
   );
 };
@@ -2303,7 +2309,7 @@ const UserContainer = ({ user, logout }) => {
     <div className='user-container'>
       {user ? (
         <>
-          <p>Hello There, {user.name.toUpperCase()}</p>
+          <p>Hello There, {user?.name?.toUpperCase()}</p> //* ?. is optional Chaining.
           <button type='button' className='btn' onClick={logout}>
             logout
           </button>
@@ -2314,6 +2320,77 @@ const UserContainer = ({ user, logout }) => {
     </div>
   );
 };
+export default UserContainer;
+```
+
+### Context API by using createContext from react
+
+-createContext will return 2 things, Provider context and consumer context
+
+Navbar.js 
+```
+import React from "react";
+import { useState, createContext } from "react";
+import Navlinks from "./Navlinks";
+
+export const NavbarContext = createContext();
+console.log(NavbarContext.Provider);
+
+const Navbar = () => {
+  const [user, setUser] = useState({ name: "bob" });
+
+  const logout = () => {
+    setUser(null);
+  };
+
+  return (
+    <NavbarContext.Provider value={{ user, logout }}>
+      {/* //* here value property is being provided by Provider context of createContext(), so this value is accessible across it's tree so we can bypass the props drilling(passing props from one component to another and so on)
+        //* bypassing the Navlinks for using the props over navlinks and directly using it inside the UserContainer component. */}
+      <nav className="navbar">
+        <h5>CONTEXT API</h5>
+        <Navlinks user={user} logout={logout} />
+      </nav>
+    </NavbarContext.Provider>
+  );
+};
+
+export default Navbar;
+```
+
+UserContainer.js
+```
+import React, { useContext } from "react";
+import { NavbarContext } from "./Navbar";
+
+const UserContainer = () => {
+  // const value=useContext(NavbarContext)
+  // *to use createContext we need to import useContext and we need to provide the context where CreateContext was used, in this case
+  // * the createContext is used with NavbarContext, that is why we are passing here after exporting from Navbar
+  // console.log(value.user.name);  value contains user hooks and logout function.
+
+  //* we can directly take the user and logout means destructing from useContext.
+
+  const { user, logout } = useContext(NavbarContext);
+  return (
+    <div className="user-container">
+      {user ? (
+        <>
+          <p>
+            Hello there,
+            {user?.name?.toUpperCase()}
+          </p>
+          <button className="btn" onClick={logout}>
+            Logout
+          </button>
+        </>
+      ) : (
+        <p>Please Login</p>
+      )}
+    </div>
+  );
+};
+
 export default UserContainer;
 ```
 
