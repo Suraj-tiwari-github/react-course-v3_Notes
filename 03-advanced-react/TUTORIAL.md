@@ -2419,6 +2419,92 @@ npm install && npm run dev
 - access in App.jsx
 - log result
 
+context.jsx
+```js
+import { createContext, useContext, useState } from "react";
+
+
+const GlobalContext=createContext();
+
+//let's create our custom hook and export it and we can use it in App.jsx for displaying name.
+export const useGlobalContext=()=> useContext(GlobalContext)
+
+const AppContext=({children})=>{
+    const [name, setName]=useState('ram');
+    return (
+        <GlobalContext.Provider value={{name,setName}}>
+            {/* {props.children} As we defined props in the parameter, we can also destructure them directly on the parameter, so we can ommit props, and we can access directly children */}
+            {children}
+        </GlobalContext.Provider>
+    )
+}
+
+export default AppContext;
+```
+
+main.js
+```js
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx'
+import './index.css'
+import AppContext from './context.jsx'
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <AppContext>
+      {/* AppContext is our createContext from react which we use with useContext to pass the state values globally with the help of wrapping our main <App/> component inside of AppContext. */}
+    <App />
+    </AppContext>
+  </React.StrictMode>,
+)
+```
+
+App.jsx
+```js
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import { useGlobalContext } from './context'
+
+function App() {
+  const [count, setCount] = useState(0)
+  //* let's destructure it from useContext which is our custom hook.
+  const {name}=useGlobalContext();
+  console.log(name);
+  return (
+    <>
+      <div>
+        <a href="https://vitejs.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
+}
+
+export default App
+
+```
+
+
+
 #### useReducer
 
 ```js
