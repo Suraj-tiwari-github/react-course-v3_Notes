@@ -3087,6 +3087,11 @@ const removePerson = (id) => {
   const newPeople = people.filter((person) => person.id !== id);
   setPeople(newPeople);
 };
+//* by using this removePerson function, It will be created again and again on re-renders that will create a
+glowing box under our inspect element of react profile tool under console.
+//* which helps us to identify that entire list and the count is getting re-render because of removePerson is getting created on re-renders.
+
+//* To avoid the re-render behaviour, we have to use the useCallback hook provided by react. 
 ```
 
 - pass it down to List and Person
