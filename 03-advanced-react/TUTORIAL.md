@@ -3155,7 +3155,7 @@ const FetchData = () => {
 -Example for the video lecture video no: 160
 - Here we are using the useCallback function and I have written explanation for it.
 
-  ```js
+```js
 const removePerson=useCallback((id)=>{
     console.log(people); //* displaying 4 users with id:1, name: 'john'
     //* upon clicking remove button it is not clearing the name with the id, because useCallback will run only once, so it is able to remove the value for the first onClick event of the remove button.
@@ -3164,9 +3164,6 @@ const removePerson=useCallback((id)=>{
     const newPeople=people.filter((person)=>person.id!==id);
     setPeople(newPeople);
   },[people]) //* added people state to run it on state change.
-    
-  
-
   //* removePerson will be created again by scratch when re-renders which is a performance issue(On not using useCallback)
   ```
 
