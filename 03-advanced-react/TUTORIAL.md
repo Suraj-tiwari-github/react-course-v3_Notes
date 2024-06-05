@@ -3152,6 +3152,25 @@ const FetchData = () => {
 };
 ```
 
+-Example for the video lecture video no: 160
+- Here we are using the useCallback function and I have written explanation for it.
+
+  ```js
+const removePerson=useCallback((id)=>{
+    console.log(people); //* displaying 4 users with id:1, name: 'john'
+    //* upon clicking remove button it is not clearing the name with the id, because useCallback will run only once, so it is able to remove the value for the first onClick event of the remove button.
+    //* to let it run for the rest of the elements on button click event, we have to pass it in the dependency array.
+    //* on providing the people array we are telling to react, that let it run on the state change of people
+    const newPeople=people.filter((person)=>person.id!==id);
+    setPeople(newPeople);
+  },[people]) //* added people state to run it on state change.
+    
+  
+
+  //* removePerson will be created again by scratch when re-renders which is a performance issue(On not using useCallback)
+  ```
+
+
 #### useMemo
 
 The useMemo hook is a hook in React that allows you to memoize a value. It takes two arguments: the first is a function that returns the value you want to memoize, and the second is an array of dependencies. The hook will return the memoized value that will only change if one of the values in the dependency array changes.
